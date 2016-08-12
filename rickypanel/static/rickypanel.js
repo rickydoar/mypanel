@@ -3,8 +3,7 @@ var Rickypanel = function(token) {
   this.token = token;
 }
 
-Rickypanel.prototype.track = function(event, params) {
-  console.log(params)
+Rickypanel.prototype.track = function(event, params) { 
   var url_params = {
     "event":event
   }
@@ -20,7 +19,7 @@ Rickypanel.prototype.track = function(event, params) {
     url_string += "&" + name + "=" + value
   });
   return $.ajax({
-    url: "http://127.0.0.1:8000/track/?" + url_string,
+    url: "http://138.68.26.218/track/?" + url_string,
     type: 'GET',
     dataType: 'json',
     contentType: 'application/json',

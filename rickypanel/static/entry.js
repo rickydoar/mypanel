@@ -150,7 +150,7 @@ document.registerElement('date-picker', class datePicker extends Component {
     this.update({to_date:date});
     if ($('.fromDatePicker').val() > $('.toDatePicker').val()){
       $('.fromDatePicker').val(moment($('.toDatePicker').val(), "MM/DD/YYYY").subtract(7, "days").format("MM/DD/YYYY"));
-      this.update({from_date:moment(moment($('.toDatePicker').val(), "MM/DD/YYYY").subtract(7, "days").format("YYYY-MM-DD"))});
+      this.update({from_date:moment($('.toDatePicker').val(), "MM/DD/YYYY").subtract(7, "days").format("YYYY-MM-DD")});
     }
     updateChart(this.state)
   }
@@ -189,8 +189,8 @@ function updateChart(state){
   if (params.on == "Undefined"){
     delete params.on;
   }
-  segmentQuery(api_secret, params).done(function(data){
-    var chart_data = lineChartData(data)
+  segmentQuery(api_secret, params).done(function(data){ 
+    var chart_data = lineChartData(data);
     var chart = new Highcharts.Chart({
           colors: ["#53a3eb", "#32BBBD", "#a28ccb", "#da7b80", "#2bb5e2", "#e8bc66", "#d390b6"],
           chart: {
@@ -239,7 +239,7 @@ function segmentQuery(api_secret, params){
   var sig = md5(args_joined)
   url_params = url_params.slice(1) + "&sig=" + sig
   return $.ajax({
-    url: "http://127.0.0.1:8000/segmentation/?" + url_params,
+    url: "http://138.68.26.218/segmentation/?" + url_params,
     // beforeSend: function(xhr) { 
     //   xhr.setRequestHeader("Authorization", "Basic " + authHeader); 
     // },
@@ -256,7 +256,7 @@ function top_events(api_key, api_secret){
   var sig = md5(args_joined)
   var url_params= "api_key=" + params.api_key + "&expire=" + params.expire + "&sig=" + sig
   return $.ajax({
-    url: "http://127.0.0.1:8000/events/?" + url_params,
+    url: "http://138.68.26.218/events/?" + url_params,
     // beforeSend: function(xhr) { 
     //   xhr.setRequestHeader("Authorization", "Basic " + authHeader); 
     // },
